@@ -1,7 +1,52 @@
 // Mostro all'utente 5 numeri casuali
 const randomNumb = numbGenerator(5, 1, 50);
-const guessNumb = [];
-alert(randomNumb);
+console.log(randomNumb)
+alert('Ricordati questi numeri! ' + randomNumb);
+// Numeri inseriti dall'utente
+let userInputs = [];
+// Numeri indovinati
+let guessNumb = [];
+
+
+// Aspetto 30 secondi e chiedo all'utente di inserire i numeri che ha visto precedentemente
+setTimeout(() => {
+
+    // Finche i numeri inseriti dall'utente non saranno tanti quanti i numeri generati random
+    // continuo a chiedere numeri all'utente
+    while(userInputs.length < randomNumb.length ) {
+        const userNumb = prompt('Inserisci uno alla volta i numeri visti in precedenza')
+        let userNumbAsNumb = parseInt(userNumb);
+        // Se il numero non è nan lo inserisco nell'array di numeri inseriti dal giocatore, altrimenti richiedo
+        if(!isNaN(userNumbAsNumb)) {
+            userInputs.push(userNumbAsNumb);
+        }
+    }
+
+    // Se i numeri inseriti dall'utente sono giusti li inserisco nell'array di numeri indovinati
+    for( let i = 0; i < userInputs.length; i++){
+        let singleInput = userInputs[i];
+
+        if (randomNumb.includes(singleInput)){
+            guessNumb.push(singleInput);
+        }   
+    }
+
+    // Messaggio finale con punteggio per l'utente
+    alert('Hai indovinato ' + guessNumb.length + ' numeri. E sono ' + ''+ guessNumb.join(', '));
+
+
+}, 30000)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
